@@ -1,0 +1,23 @@
+syntax = "v1"
+
+info(
+	title: "type title here"
+	desc: "type desc here"
+	author: "type author here"
+	email: "type email here"
+	version: "type version here"
+)
+
+type (
+	LoginRequest {
+		Code string `path:"code"`
+	}
+
+	LoginResponse {
+		Token string `json:"token"`
+	}
+)
+service auth {
+	@handler login
+	get /api/auth/login/:code (LoginRequest) returns (LoginResponse)
+}
