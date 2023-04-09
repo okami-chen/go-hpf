@@ -40,7 +40,7 @@ jobs:
     - name: Build And Push
       uses: docker/build-push-action@v4
       with:
-        context: ${{ matrix.version }}
+        context: .
         platforms: linux/amd64
         push: true
         file: ./${{ matrix.version }}/Dockerfile
