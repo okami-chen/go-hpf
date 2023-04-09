@@ -10,9 +10,9 @@ jobs:
   build:
     strategy:
       fail-fast: false
-      #     max-parallel: 2
       matrix:
-        version: ["auth/api"]
+        version: ["auth"]
+        type: ["api"]
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -45,4 +45,4 @@ jobs:
         push: true
         file: ./service/${{ matrix.version }}/Dockerfile
         tags: |
-          registry.cn-hangzhou.aliyuncs.com/okami/docker-php:go-${{ matrix.version }}
+          registry.cn-hangzhou.aliyuncs.com/okami/micro-go:service-${{ matrix.version }}-${{ matrix.api }}
