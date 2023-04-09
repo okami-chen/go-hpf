@@ -2,7 +2,7 @@
 package types
 
 type LoginRequest struct {
-	Code string `path:"code"`
+	Code string `query:"code"`
 }
 
 type LoginResponse struct {

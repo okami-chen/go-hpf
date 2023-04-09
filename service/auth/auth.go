@@ -3,10 +3,12 @@ package main
 import (
 	"flag"
 	"fmt"
+	"github.com/zeromicro/go-zero/core/load"
+	"github.com/zeromicro/go-zero/core/stat"
 
-	"hpf/auth/internal/config"
-	"hpf/auth/internal/handler"
-	"hpf/auth/internal/svc"
+	"hpf/service/auth/internal/config"
+	"hpf/service/auth/internal/handler"
+	"hpf/service/auth/internal/svc"
 
 	"github.com/zeromicro/go-zero/core/conf"
 	"github.com/zeromicro/go-zero/rest"
@@ -25,6 +27,9 @@ func main() {
 
 	ctx := svc.NewServiceContext(c)
 	handler.RegisterHandlers(server, ctx)
+
+	stat.DisableLog()
+	load.DisableLog()
 
 	fmt.Printf("Starting server at %s:%d...\n", c.Host, c.Port)
 	server.Start()

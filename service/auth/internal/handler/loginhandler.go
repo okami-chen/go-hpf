@@ -4,10 +4,10 @@ import (
 	"net/http"
 
 	"github.com/zeromicro/go-zero/rest/httpx"
-	"hpf/auth/internal/logic"
-	"hpf/auth/internal/svc"
-	"hpf/auth/internal/types"
 	"hpf/common/response"
+	"hpf/service/auth/internal/logic"
+	"hpf/service/auth/internal/svc"
+	"hpf/service/auth/internal/types"
 )
 
 func loginHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
@@ -17,7 +17,6 @@ func loginHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 			httpx.ErrorCtx(r.Context(), w, err)
 			return
 		}
-
 		l := logic.NewLoginLogic(r.Context(), svcCtx)
 		resp, err := l.Login(&req)
 		if err != nil {

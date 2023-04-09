@@ -1,7 +1,7 @@
 package svc
 
 import (
-	"hpf/auth/internal/config"
+	"hpf/service/auth/internal/config"
 )
 
 type ServiceContext struct {

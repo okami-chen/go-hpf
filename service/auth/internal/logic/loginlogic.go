@@ -3,8 +3,8 @@ package logic
 import (
 	"context"
 
-	"hpf/auth/internal/svc"
-	"hpf/auth/internal/types"
+	"hpf/service/auth/internal/svc"
+	"hpf/service/auth/internal/types"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )
@@ -26,5 +26,5 @@ func NewLoginLogic(ctx context.Context, svcCtx *svc.ServiceContext) *LoginLogic 
 func (l *LoginLogic) Login(req *types.LoginRequest) (resp *types.LoginResponse, err error) {
 	// todo: add your logic here and delete this line
 
-	return &types.LoginResponse{Token: "123"}, nil
+	return &types.LoginResponse{Token: req.Code}, nil
 }

@@ -43,6 +43,6 @@ jobs:
         context: .
         platforms: linux/amd64
         push: true
-        file: ./${{ matrix.version }}/Dockerfile
+        file: ./service/${{ matrix.version }}/Dockerfile
         tags: |
           registry.cn-hangzhou.aliyuncs.com/okami/docker-php:go-${{ matrix.version }}

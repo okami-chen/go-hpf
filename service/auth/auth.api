@@ -10,7 +10,7 @@ info(
 
 type (
 	LoginRequest {
-		Code string `path:"code"`
+		Code string `query:"code"`
 	}
 
 	LoginResponse {
@@ -19,5 +19,5 @@ type (
 )
 service auth {
 	@handler login
-	get /api/auth/login/:code (LoginRequest) returns (LoginResponse)
+	get /api/auth/login (LoginRequest) returns (LoginResponse)
 }

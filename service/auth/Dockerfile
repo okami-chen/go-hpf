@@ -14,8 +14,8 @@ ADD go.mod .
 ADD go.sum .
 RUN go mod download
 COPY . .
-COPY auth/etc /app/etc
-RUN go build -ldflags="-s -w" -o /app/auth auth/auth.go
+COPY service/auth/etc /app/etc
+RUN go build -ldflags="-s -w" -o /app/auth service/auth/auth.go
 
 
 FROM scratch

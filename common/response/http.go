@@ -2,6 +2,7 @@ package response
 
 import (
 	"context"
+	"github.com/golang-module/carbon/v2"
 	"github.com/pkg/errors"
 	"github.com/zeromicro/go-zero/core/logx"
 	"github.com/zeromicro/go-zero/rest/httpx"
@@ -12,8 +13,9 @@ import (
 )
 
 type TResponse struct {
-	TraceId string `json:"trace_id"`
-	SpanId  string `json:"span_id"`
+	Time    string `json:"time"`
+	TraceId string `json:"trace"`
+	SpanId  string `json:"span"`
 }
 
 type HttpCustomResponse struct {
@@ -35,8 +37,9 @@ func HttpResult(r *http.Request, w http.ResponseWriter, resp interface{}, err er
 			Message: "",
 			Data:    resp,
 		}
-		logx.WithContext(r.Context()).Infow("http Response", logx.Field("response", resp))
+		logx.WithContext(r.Context()).Infow("Http Response", logx.Field("response", resp))
 		resp.Trace = TResponse{
+			Time:    carbon.Now().ToDateTimeString(),
 			TraceId: traceIdFromContext(r.Context()),
 			SpanId:  spanIdFromContext(r.Context()),
 		}
@@ -73,6 +76,7 @@ func HttpResult(r *http.Request, w http.ResponseWriter, resp interface{}, err er
 		)
 
 		resp.Trace = TResponse{
+			Time:    carbon.Now().ToDateTimeString(),
 			TraceId: traceIdFromContext(r.Context()),
 			SpanId:  spanIdFromContext(r.Context()),
 		}
