@@ -3,8 +3,8 @@ package logic
 import (
 	"context"
 
-	"hpf/service/auth/internal/svc"
-	"hpf/service/auth/internal/types"
+	"hpf/service/auth/api/internal/svc"
+	"hpf/service/auth/api/internal/types"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )

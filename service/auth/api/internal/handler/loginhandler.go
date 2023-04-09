@@ -5,9 +5,9 @@ import (
 
 	"github.com/zeromicro/go-zero/rest/httpx"
 	"hpf/common/response"
-	"hpf/service/auth/internal/logic"
-	"hpf/service/auth/internal/svc"
-	"hpf/service/auth/internal/types"
+	"hpf/service/auth/api/internal/logic"
+	"hpf/service/auth/api/internal/svc"
+	"hpf/service/auth/api/internal/types"
 )
 
 func loginHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {

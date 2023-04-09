@@ -24,3 +24,7 @@ func (e *CodeError) Error() string {
 func NewErrCodeMsg(errCode uint64, errMsg string) *CodeError {
 	return &CodeError{errCode: errCode, errMsg: errMsg}
 }
+
+func NewDefaultError(errMsg string) *CodeError {
+	return &CodeError{errCode: 500, errMsg: errMsg}
+}

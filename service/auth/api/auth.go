@@ -5,10 +5,9 @@ import (
 	"fmt"
 	"github.com/zeromicro/go-zero/core/load"
 	"github.com/zeromicro/go-zero/core/stat"
-
-	"hpf/service/auth/internal/config"
-	"hpf/service/auth/internal/handler"
-	"hpf/service/auth/internal/svc"
+	"hpf/service/auth/api/internal/config"
+	"hpf/service/auth/api/internal/handler"
+	"hpf/service/auth/api/internal/svc"
 
 	"github.com/zeromicro/go-zero/core/conf"
 	"github.com/zeromicro/go-zero/rest"

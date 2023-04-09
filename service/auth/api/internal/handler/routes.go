@@ -4,7 +4,7 @@ package handler
 import (
 	"net/http"
 
-	"hpf/service/auth/internal/svc"
+	"hpf/service/auth/api/internal/svc"
 
 	"github.com/zeromicro/go-zero/rest"
 )

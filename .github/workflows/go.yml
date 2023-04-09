@@ -12,7 +12,7 @@ jobs:
       fail-fast: false
       #     max-parallel: 2
       matrix:
-        version: ["auth"]
+        version: ["auth/api"]
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
