@@ -3,6 +3,8 @@ module hpf
 go 1.20
 
 require (
+	github.com/golang-jwt/jwt/v5 v5.0.0-rc.2
+	github.com/golang-module/carbon/v2 v2.2.3
 	github.com/pkg/errors v0.9.1
 	github.com/zeromicro/go-zero v1.5.1
 	go.opentelemetry.io/otel/trace v1.14.0
@@ -18,7 +20,6 @@ require (
 	github.com/go-logr/logr v1.2.3 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
 	github.com/golang-jwt/jwt/v4 v4.5.0 // indirect
-	github.com/golang-module/carbon/v2 v2.2.3 // indirect
 	github.com/golang/protobuf v1.5.3 // indirect
 	github.com/google/pprof v0.0.0-20211214055906-6f57359322fd // indirect
 	github.com/google/uuid v1.3.0 // indirect

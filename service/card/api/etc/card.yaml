@@ -1,0 +1,5 @@
+Name: card
+Host: 0.0.0.0
+Port: 18889
+JwtAuth:
+  AccessSecret: e10adc3949ba59abbe56e057f20f883e

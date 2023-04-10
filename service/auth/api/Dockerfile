@@ -19,6 +19,7 @@ RUN go build -ldflags="-s -w" -o /app/auth service/auth/api/auth.go
 
 
 FROM scratch
+ENV APP_ENV=prod
 
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 COPY --from=builder /usr/share/zoneinfo/Asia/Shanghai /usr/share/zoneinfo/Asia/Shanghai
@@ -26,6 +27,6 @@ ENV TZ Asia/Shanghai
 
 WORKDIR /app
 COPY --from=builder /app/auth /app/auth
-COPY --from=builder /app/etc /app/etc
+COPY --from=builder /app/etc/auth.${APP_ENV}.yaml /app/etc/auth.yaml
 
 CMD ["./auth", "-f", "etc/auth.yaml"]

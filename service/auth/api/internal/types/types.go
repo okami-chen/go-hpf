@@ -2,9 +2,11 @@
 package types
 
 type LoginRequest struct {
-	Code string `query:"code"`
+	Code string `form:"code" @query:"code"`
 }
 
 type LoginResponse struct {
-	Token string `json:"token"`
+	Token  string `json:"token"`
+	UserId int    `json:"userId"`
+	Page   string `json:"page"`
 }

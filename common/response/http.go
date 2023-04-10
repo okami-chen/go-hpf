@@ -92,6 +92,7 @@ func JwtUnauthorizedResult(w http.ResponseWriter, r *http.Request, err error) {
 		Message: "鉴权失败",
 		Data:    nil,
 		Trace: TResponse{
+			Time:    carbon.Now().ToDateTimeString(),
 			TraceId: traceIdFromContext(r.Context()),
 			SpanId:  spanIdFromContext(r.Context()),
 		}})

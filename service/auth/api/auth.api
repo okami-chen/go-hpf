@@ -10,11 +10,13 @@ info(
 
 type (
 	LoginRequest {
-		Code string `query:"code"`
+		Code string `form:"code" @query:"code"`
 	}
 
 	LoginResponse {
-		Token string `json:"token"`
+		Token  string `json:"token"`
+		UserId int    `json:"userId"`
+		Page   string `json:"page"`
 	}
 )
 service auth {

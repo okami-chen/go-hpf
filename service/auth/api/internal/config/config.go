@@ -11,4 +11,7 @@ type Config struct {
 	//}
 	//
 	//CacheRedis cache.CacheConf
+	JwtAuth struct {
+		AccessSecret string
+	}
 }

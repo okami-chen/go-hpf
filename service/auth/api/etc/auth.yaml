@@ -1,7 +1,9 @@
 Name: auth
 Host: 0.0.0.0
-Port: 8888
+Port: 18888
 Mysql:
-  DataSource: root:123456@tcp(mysql:3306)/sec?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
+  DataSource: root:123456@tcp(192.168.3.10:3306)/sec?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
 CacheRedis:
-  - Host: redis
+  - Host: 192.168.3.10
+JwtAuth:
+  AccessSecret: e10adc3949ba59abbe56e057f20f883e

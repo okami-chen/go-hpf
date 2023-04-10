@@ -5,9 +5,12 @@ import (
 	"fmt"
 	"github.com/zeromicro/go-zero/core/load"
 	"github.com/zeromicro/go-zero/core/stat"
+	"github.com/zeromicro/go-zero/rest/httpx"
+	"hpf/common/errorx"
 	"hpf/service/auth/api/internal/config"
 	"hpf/service/auth/api/internal/handler"
 	"hpf/service/auth/api/internal/svc"
+	"net/http"
 
 	"github.com/zeromicro/go-zero/core/conf"
 	"github.com/zeromicro/go-zero/rest"
@@ -21,12 +24,19 @@ func main() {
 	var c config.Config
 	conf.MustLoad(*configFile, &c)
 
-	server := rest.MustNewServer(c.RestConf)
+	server := rest.MustNewServer(c.RestConf, rest.WithCors("*"))
 	defer server.Stop()
 
 	ctx := svc.NewServiceContext(c)
 	handler.RegisterHandlers(server, ctx)
-
+	httpx.SetErrorHandler(func(err error) (int, interface{}) {
+		switch e := err.(type) {
+		case *errorx.CustomCodeError:
+			return http.StatusOK, e.Data()
+		default:
+			return http.StatusInternalServerError, nil
+		}
+	})
 	stat.DisableLog()
 	load.DisableLog()
 
