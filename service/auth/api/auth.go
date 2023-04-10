@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"flag"
 	"fmt"
 	"github.com/zeromicro/go-zero/core/load"
@@ -29,10 +30,10 @@ func main() {
 
 	ctx := svc.NewServiceContext(c)
 	handler.RegisterHandlers(server, ctx)
-	httpx.SetErrorHandler(func(err error) (int, interface{}) {
+	httpx.SetErrorHandlerCtx(func(ctx context.Context, err error) (int, interface{}) {
 		switch e := err.(type) {
 		case *errorx.CustomCodeError:
-			return http.StatusOK, e.Data()
+			return http.StatusOK, e.Data(ctx)
 		default:
 			return http.StatusInternalServerError, nil
 		}

@@ -29,4 +29,6 @@ WORKDIR /app
 COPY --from=builder /app/card /app/card
 COPY --from=builder /app/etc/card.${APP_ENV}.yaml /app/etc/card.yaml
 
+EXPOSE 18889
+
 CMD ["./card", "-f", "etc/card.yaml"]

@@ -29,4 +29,6 @@ WORKDIR /app
 COPY --from=builder /app/auth /app/auth
 COPY --from=builder /app/etc/auth.${APP_ENV}.yaml /app/etc/auth.yaml
 
+EXPOSE 18888
+
 CMD ["./auth", "-f", "etc/auth.yaml"]
