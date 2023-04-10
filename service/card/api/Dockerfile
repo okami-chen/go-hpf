@@ -14,7 +14,7 @@ ADD go.mod .
 ADD go.sum .
 RUN go mod download
 COPY . .
-COPY service/auth/api/etc /app/etc
+COPY service/card/api/etc /app/etc
 RUN go build -ldflags="-s -w" -o /app/card service/card/api/auth.go
 
 
