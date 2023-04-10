@@ -7,10 +7,6 @@ import (
 
 type Config struct {
 	rest.RestConf
-	//Mysql struct {
-	//	DataSource string
-	//}
-	//
-	//CacheRedis cache.CacheConf
-	JwtAuth config.JwtAuth
+	JwtAuth           config.JwtAuth
+	WechatMiniProgram config.WechatMiniProgram
 }

@@ -1,6 +1,9 @@
 package entity
 
-import "time"
+import (
+	"gorm.io/gorm"
+	"time"
+)
 
 type Card struct {
 	Title      string    `gorm:"title;type:varchar(30);comment:名称" json:"title" `                         // 名称
@@ -17,4 +20,36 @@ type Card struct {
 
 func (Card) TableName() string {
 	return "sec_card"
+}
+
+func (c *Card) BeforeCreate(tx *gorm.DB) (err error) {
+	return
+}
+
+func (c *Card) BeforeSave(tx *gorm.DB) (err error) {
+	return
+}
+
+func (c *Card) BeforeUpdate(tx *gorm.DB) (err error) {
+	return
+}
+
+func (c *Card) BeforeDelete(tx *gorm.DB) (err error) {
+	return
+}
+
+func (c *Card) AfterUpdate(tx *gorm.DB) (err error) {
+	return
+}
+
+func (c *Card) AfterSave(tx *gorm.DB) (err error) {
+	return
+}
+
+func (c *Card) AfterDelete(tx *gorm.DB) (err error) {
+	return
+}
+
+func (c *Card) AfterFind(tx *gorm.DB) (err error) {
+	return
 }

@@ -34,6 +34,8 @@ func main() {
 		switch e := err.(type) {
 		case *errorx.CustomCodeError:
 			return http.StatusOK, e.Data(ctx)
+		case *errorx.CodeError:
+			return http.StatusOK, e.Error()
 		default:
 			return http.StatusInternalServerError, nil
 		}

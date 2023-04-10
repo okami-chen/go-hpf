@@ -13,8 +13,9 @@ import (
 )
 
 type (
-	CardModel interface {
+	CardService interface {
 		Insert(data entity.Card) *entity.Card
+		InsertBatch(data []entity.Card) *[]entity.Card
 		FindOne(id int64) *entity.Card
 		FindListPage(page, pageSize int, data entity.Card) (*[]entity.Card, int64)
 		FindList(data entity.Card) *[]entity.Card
@@ -22,26 +23,32 @@ type (
 		Delete(ids []int64)
 	}
 
-	CardModelImpl struct {
+	cardServiceImpl struct {
 		Table string
 		Db    *gorm.DB
 	}
 )
 
-func NewCardServiceImpl(db *gorm.DB) *CardModelImpl {
-	return &CardModelImpl{
+func NewCardServiceImpl(db *gorm.DB) *cardServiceImpl {
+	return &cardServiceImpl{
 		Table: entity.Card{}.TableName(),
 		Db:    db,
 	}
 }
 
-func (m *CardModelImpl) Insert(data entity.Card) *entity.Card {
+func (m *cardServiceImpl) Insert(data entity.Card) *entity.Card {
 	err := m.Db.Table(m.Table).Create(&data).Error
 	biz.ErrIsNil(err, "添加Card失败")
 	return &data
 }
 
-func (m *CardModelImpl) FindOne(id int64) *entity.Card {
+func (m *cardServiceImpl) InsertBatch(data []entity.Card) *[]entity.Card {
+	err := m.Db.Table(m.Table).CreateInBatches(&data, 100).Error
+	biz.ErrIsNil(err, "添加Card失败")
+	return &data
+}
+
+func (m *cardServiceImpl) FindOne(id int64) *entity.Card {
 	resData := new(entity.Card)
 	db := m.Db.Table(m.Table).Where("id = ?", id)
 	err := db.First(resData).Error
@@ -49,7 +56,7 @@ func (m *CardModelImpl) FindOne(id int64) *entity.Card {
 	return resData
 }
 
-func (m *CardModelImpl) FindListPage(page, pageSize int, data entity.Card) (*[]entity.Card, int64) {
+func (m *cardServiceImpl) FindListPage(page, pageSize int, data entity.Card) (*[]entity.Card, int64) {
 	list := make([]entity.Card, 0)
 	var total int64 = 0
 	offset := pageSize * (page - 1)
@@ -75,12 +82,12 @@ func (m *CardModelImpl) FindListPage(page, pageSize int, data entity.Card) (*[]e
 	}
 	db.Order("id desc")
 	err := db.Count(&total).Error
-	err = db.Order("create_time").Limit(pageSize).Offset(offset).Find(&list).Error
+	err = db.Limit(pageSize).Offset(offset).Find(&list).Error
 	biz.ErrIsNil(err, "查询Card分页列表失败")
 	return &list, total
 }
 
-func (m *CardModelImpl) FindList(data entity.Card) *[]entity.Card {
+func (m *cardServiceImpl) FindList(data entity.Card) *[]entity.Card {
 	list := make([]entity.Card, 0)
 	db := m.Db.Table(m.Table)
 	// 此处填写 where参数判断
@@ -107,11 +114,11 @@ func (m *CardModelImpl) FindList(data entity.Card) *[]entity.Card {
 	return &list
 }
 
-func (m *CardModelImpl) Update(data entity.Card) *entity.Card {
+func (m *cardServiceImpl) Update(data entity.Card) *entity.Card {
 	biz.ErrIsNil(m.Db.Table(m.Table).Updates(&data).Error, "修改Card失败")
 	return &data
 }
 
-func (m *CardModelImpl) Delete(ids []int64) {
+func (m *cardServiceImpl) Delete(ids []int64) {
 	biz.ErrIsNil(m.Db.Table(m.Table).Delete(&entity.Card{}, "id in (?)", ids).Error, "删除Card失败")
 }

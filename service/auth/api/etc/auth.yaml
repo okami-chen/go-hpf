@@ -8,3 +8,6 @@ CacheRedis:
 JwtAuth:
   AccessSecret: e10adc3949ba59abbe56e057f20f883e
   AccessExpire: 86400
+WechatMiniProgram:
+  AppId: wx34add18602df3ca9
+  Secret: c41ac1d60ab731e50200e27c83802c57
