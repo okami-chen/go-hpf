@@ -26,11 +26,7 @@ func NewListLogic(ctx context.Context, svcCtx *svc.ServiceContext) *ListLogic {
 }
 
 func (l *ListLogic) List(req *types.SearchRequest, request *http.Request) (resp *entity.Card, err error) {
-	l.Logger.Debug(request.Header.Get("Authorization"))
-	dao := &services.CardModelImpl{
-		Table: "sec_card",
-		Db:    l.svcCtx.DbEngin,
-	}
-	ret := dao.FindOne(int64(1))
+	service := services.NewCardServiceImpl(l.svcCtx.DbEngin)
+	ret := service.FindOne(int64(1))
 	return ret, nil
 }

@@ -2,6 +2,7 @@ package config
 
 import (
 	"github.com/zeromicro/go-zero/rest"
+	"hpf/common/config"
 )
 
 type Config struct {
@@ -11,7 +12,5 @@ type Config struct {
 	//}
 	//
 	//CacheRedis cache.CacheConf
-	JwtAuth struct {
-		AccessSecret string
-	}
+	JwtAuth config.JwtAuth
 }

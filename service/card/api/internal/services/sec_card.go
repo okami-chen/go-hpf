@@ -28,6 +28,13 @@ type (
 	}
 )
 
+func NewCardServiceImpl(db *gorm.DB) *CardModelImpl {
+	return &CardModelImpl{
+		Table: entity.Card{}.TableName(),
+		Db:    db,
+	}
+}
+
 func (m *CardModelImpl) Insert(data entity.Card) *entity.Card {
 	err := m.Db.Table(m.Table).Create(&data).Error
 	biz.ErrIsNil(err, "添加Card失败")
