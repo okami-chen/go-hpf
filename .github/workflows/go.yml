@@ -48,7 +48,7 @@ jobs:
         context: .
         platforms: linux/amd64
         push: true
-        file: ./service/${{ matrix.version }}/${{ matrix.type }}/Dockerfile
+        file: ./services/${{ matrix.version }}/${{ matrix.type }}/Dockerfile
         tags: |
           registry.cn-hangzhou.aliyuncs.com/okami/micro-go:service-${{ matrix.version }}-${{ matrix.type }}
           registry.cn-hangzhou.aliyuncs.com/okami/micro-go:service-${{ matrix.version }}-${{ matrix.type }}-${{ steps.date.outputs.today }}

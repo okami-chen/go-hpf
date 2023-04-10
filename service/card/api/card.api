@@ -11,7 +11,8 @@ type SearchRequest {
 }
 
 type SearchResponse {
-	UserId string `json:"userId"`
+	UserId string      `json:"userId"`
+	Card   interface{} `json:"entity"`
 }
 
 @server(

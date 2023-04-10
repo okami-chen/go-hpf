@@ -1,10 +1,12 @@
 package config
 
-import "github.com/zeromicro/go-zero/rest"
+import (
+	"github.com/zeromicro/go-zero/rest"
+	"hpf/common/config"
+)
 
 type Config struct {
 	rest.RestConf
-	JwtAuth struct {
-		AccessSecret string
-	}
+	JwtAuth config.JwtAuth
+	Mysql   config.Mysql
 }

@@ -2,6 +2,8 @@ package logic
 
 import (
 	"context"
+	"hpf/service/card/api/internal/entity"
+	"hpf/service/card/api/internal/services"
 	"hpf/service/card/api/internal/svc"
 	"hpf/service/card/api/internal/types"
 	"net/http"
@@ -23,7 +25,12 @@ func NewListLogic(ctx context.Context, svcCtx *svc.ServiceContext) *ListLogic {
 	}
 }
 
-func (l *ListLogic) List(req *types.SearchRequest, request *http.Request) (resp *types.SearchResponse, err error) {
+func (l *ListLogic) List(req *types.SearchRequest, request *http.Request) (resp *entity.Card, err error) {
 	l.Logger.Debug(request.Header.Get("Authorization"))
-	return &types.SearchResponse{UserId: "2"}, nil
+	dao := &services.CardModelImpl{
+		Table: "sec_card",
+		Db:    l.svcCtx.DbEngin,
+	}
+	ret := dao.FindOne(int64(1))
+	return ret, nil
 }

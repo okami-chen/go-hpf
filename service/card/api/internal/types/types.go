@@ -5,5 +5,6 @@ type SearchRequest struct {
 }
 
 type SearchResponse struct {
-	UserId string `json:"userId"`
+	UserId string      `json:"userId"`
+	Card   interface{} `json:"entity"`
 }
