@@ -2,3 +2,4 @@
 /auth/*.exe
 /service/auth/api/*.exe
 /bin
+/service/card/api/*.exe
