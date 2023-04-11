@@ -4,7 +4,7 @@ import (
 	"github.com/zeromicro/go-zero/rest"
 	"gorm.io/gorm"
 	"hpf/common/middleware"
-	"hpf/pkg/db"
+	"hpf/pkg/starter"
 	"hpf/service/card/api/internal/config"
 )
 
@@ -15,7 +15,7 @@ type ServiceContext struct {
 }
 
 func NewServiceContext(c config.Config) *ServiceContext {
-	conn := db.NewMysqlConn(c.Mysql)
+	conn := starter.NewMysqlConn(c.Mysql)
 	return &ServiceContext{
 		Config:  c,
 		Example: middleware.NewExampleMiddleware().Handle,
